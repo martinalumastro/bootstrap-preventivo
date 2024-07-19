@@ -11,10 +11,6 @@ const calOutputElement = document.getElementById('call-output')
 const callNotifyPromtionElement = document.getElementById('call-notify-promotion')
 const callOutputDiscountElement = document.getElementById('call-output-discount')
 
-
-//console.log(callNotifyPromtionElement)
-//console.log(formElement,inputHourElement,optionTypeWorkElement,calOutputElement)
-
 //variabili per i prezzi base del lavoro
 let priceBackend = 20.50 //number
 let priceFrontend = 15.30 //number
@@ -69,10 +65,7 @@ formElement.addEventListener('submit', function (event) {
     const promotionFind = promotions.includes(selectPromotion)
 
     //Stampare prezzo in DOM con o senza offerta
-    if((isNaN(hour)) || ((selectWork = undefined))){
-    callNotifyPromtionElement.innerHTML = 'Il codice promozionale inserito non è valido!'
-    }
-     else if(promotionFind === false) {
+    if(promotionFind === false) {
         callNotifyPromtionElement.innerHTML = 'Il codice promozionale inserito non è valido!'
         calOutputElement.innerHTML = priceSomma + ' €'
     }

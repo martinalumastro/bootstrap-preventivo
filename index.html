@@ -63,13 +63,17 @@
             <!--Form-->
             <form id="form-work" class="pt-2" method="post">
               <div class="mb-3">
-                <labelclass="form-label">Nome</label>
+                <label class="form-label" for="name">Nome</label>
                 <input
+                  id="name"
+                  name="name"
                   type="text"
                   class="form-control"
                   placeholder="Nome"
                   value=""
+                  required
                 />
+                <div id="error"></div>
               </div>
               <div class="mb-3">
                 <label class="form-label">Cognome</label>
@@ -78,6 +82,7 @@
                   class="form-control"
                   placeholder="Cognome"
                   value=""
+                  required
                 />
               </div>
               <div class="mb-3">
@@ -87,6 +92,7 @@
                   class="form-control"
                   placeholder="Email"
                   value=""
+                  required
                 />
               </div>
               <select
@@ -94,6 +100,7 @@
                 id="work"
                 class="form-select mb-3"
                 aria-label="Default select example"
+                required
               >
                 <option selected value="">Seleziona il tipo di lavoro</option>
                 <option value="backend">Backend Development</option>
@@ -111,6 +118,7 @@
                   min="1"
                   class="form-control"
                   placeholder="Numero ore di lavoro"
+                  required
                 />
               </div>
               <div class="mb-3">
@@ -155,8 +163,11 @@
                 <div>
                   <h4>Prezzo finale</h4>
                   <div class="d-inline-flex gap-3">
-                  <h4 id="call-output">---.-- €</h4>
-                  <h4 id="call-output-discount" class="text-danger text-decoration-line-through"></h4>
+                    <h4 id="call-output">---.-- €</h4>
+                    <h4
+                      id="call-output-discount"
+                      class="text-danger text-decoration-line-through"
+                    ></h4>
                   </div>
                 </div>
               </div>
