@@ -65,11 +65,15 @@ formElement.addEventListener('submit', function (event) {
     const promotionFind = promotions.includes(selectPromotion)
 
     //Stampare prezzo in DOM con o senza offerta
-    if(promotionFind === false) {
+    if((isNaN(hour)) || (selectWork === null)) {
+        calOutputElement.className = 'text-danger'
+    }
+    else if(promotionFind === false) {
         callNotifyPromtionElement.innerHTML = 'Il codice promozionale inserito non è valido!'
         calOutputElement.innerHTML = priceSomma + ' €'
     }
     else {
+        callNotifyPromtionElement.innerHTML = ''
         calOutputElement.innerHTML = priceSomma - priceSomma * 0.25 + ' €'
         callOutputDiscountElement.innerHTML = priceSomma + ' €'
     }
