@@ -51,7 +51,7 @@
     </nav>
     <!--Colonne principali, 8/12 richiesta preventivo / 4/12 contatti e img-->
     <section>
-      <div class="container pt-4">
+      <div class="container pt-3">
         <!--Colonna 8/12 desktop 12/12 mobile-->
         <div class="row">
           <div class="col-12 col-xl-8 pe-4">
@@ -61,14 +61,14 @@
               di sviluppo
             </p>
             <!--Form-->
-            <form id="form-work" class="pt-2">
+            <form id="form-work" class="pt-2" method="post">
               <div class="mb-3">
-                <label class="form-label">Nome</label>
+                <labelclass="form-label">Nome</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="nameUser"
                   placeholder="Nome"
+                  value=""
                 />
               </div>
               <div class="mb-3">
@@ -76,8 +76,8 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="surnameUser"
                   placeholder="Cognome"
+                  value=""
                 />
               </div>
               <div class="mb-3">
@@ -85,8 +85,8 @@
                 <input
                   type="email"
                   class="form-control"
-                  id="emailUser"
                   placeholder="Email"
+                  value=""
                 />
               </div>
               <select
@@ -100,6 +100,7 @@
                 <option value="frontend">Frontend Development</option>
                 <option value="analysis">Project Analysis</option>
               </select>
+              <p id="output-work" class="text-danger"></p>
               <div class="mb-3">
                 <label for="hour" class="form-label"
                   >Numero ore di lavoro</label
@@ -130,9 +131,9 @@
                   id="user-promotion"
                   placeholder="ABCDE12"
                 />
-                <p id="call-notify-promotion"></p>
+                <p id="call-notify-promotion" class="text-danger"></p>
               </div>
-              <div class="form-check mb-3">
+              <div class="form-check">
                 <input
                   class="form-check-input"
                   type="checkbox"
@@ -153,7 +154,10 @@
                 </button>
                 <div>
                   <h4>Prezzo finale</h4>
+                  <div class="d-inline-flex gap-3">
                   <h4 id="call-output">---.-- €</h4>
+                  <h4 id="call-output-discount" class="text-danger text-decoration-line-through"></h4>
+                  </div>
                 </div>
               </div>
             </form>

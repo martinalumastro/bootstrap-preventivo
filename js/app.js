@@ -9,6 +9,9 @@ const inputPromotionElement = document.getElementById('user-promotion')
 
 const calOutputElement = document.getElementById('call-output')
 const callNotifyPromtionElement = document.getElementById('call-notify-promotion')
+const callOutputDiscountElement = document.getElementById('call-output-discount')
+
+
 //console.log(callNotifyPromtionElement)
 //console.log(formElement,inputHourElement,optionTypeWorkElement,calOutputElement)
 
@@ -66,11 +69,16 @@ formElement.addEventListener('submit', function (event) {
     const promotionFind = promotions.includes(selectPromotion)
 
     //Stampare prezzo in DOM con o senza offerta
-    if(promotionFind === false) {
-        callNotifyPromtionElement.innerHTML = 'L\'offerta inserita non è valida'
+    if((isNaN(hour)) || ((selectWork = undefined))){
+    callNotifyPromtionElement.innerHTML = 'Il codice promozionale inserito non è valido!'
+    }
+     else if(promotionFind === false) {
+        callNotifyPromtionElement.innerHTML = 'Il codice promozionale inserito non è valido!'
         calOutputElement.innerHTML = priceSomma + ' €'
-    } else {
+    }
+    else {
         calOutputElement.innerHTML = priceSomma - priceSomma * 0.25 + ' €'
+        callOutputDiscountElement.innerHTML = priceSomma + ' €'
     }
 
 })
