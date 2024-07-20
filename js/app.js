@@ -11,6 +11,19 @@ const calOutputElement = document.getElementById('call-output')
 const callNotifyPromtionElement = document.getElementById('call-notify-promotion')
 const callOutputDiscountElement = document.getElementById('call-output-discount')
 
+
+
+// variabili per messagi di errore
+let nameElement = document.getElementById('name')
+let lastnameElemet = document.getElementById('lastname')
+let emailElement = document.getElementById('email')
+
+let errorBox = document.getElementById('error')
+let alertDiv = '<div class="alert alert-warning alert-dismissible fade show" role="alert">';
+let alertBtn = '<button id="close" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+
+    
+
 //variabili per i prezzi base del lavoro
 let priceBackend = 20.50 //number
 let priceFrontend = 15.30 //number
@@ -71,11 +84,21 @@ formElement.addEventListener('submit', function (event) {
     else if(promotionFind === false) {
         callNotifyPromtionElement.innerHTML = 'Il codice promozionale inserito non è valido!'
         calOutputElement.innerHTML = priceSomma + ' €'
+        calOutputElement.className = 'text-body'
     }
     else {
         callNotifyPromtionElement.innerHTML = ''
         calOutputElement.innerHTML = priceSomma - priceSomma * 0.25 + ' €'
         callOutputDiscountElement.innerHTML = priceSomma + ' €'
+        calOutputElement.className = 'text-body'
     }
 
+
+    //verifica name
+    if(nameElement.value == '') {
+        errorBox.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>"
+        nameElement.focus()
+        return false
+    }
+    return true
 })
