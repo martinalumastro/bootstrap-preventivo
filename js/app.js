@@ -18,11 +18,21 @@ let nameElement = document.getElementById('name')
 let lastnameElemet = document.getElementById('lastname')
 let emailElement = document.getElementById('email')
 
-let errorBox = document.getElementById('error')
-let alertDiv = '<div class="alert alert-warning alert-dismissible fade show" role="alert">';
-let alertBtn = '<button id="close" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+let errorBox = document.getElementById('errorName')
+let errorBoxLastname = document.getElementById('errorLastname')
 
-    
+let alertDiv = '<div class="alert alert-warning alert-dismissible fade show" role="alert">';
+let alertBtn = '<button type="button" onClick="closeDiv()" value="chiudi" class="btn-close"></button>';
+
+function closeDiv() {
+    if(errorBox.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>") {
+    errorBox.style.display = "none"
+    } 
+    if(errorBoxLastname.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>") {
+    errorBoxLastname.style.display = "none"
+    }
+}
+
 
 //variabili per i prezzi base del lavoro
 let priceBackend = 20.50 //number
@@ -98,7 +108,18 @@ formElement.addEventListener('submit', function (event) {
     if(nameElement.value == '') {
         errorBox.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>"
         nameElement.focus()
+        errorBox.style.display = "block"
+        return false
+    } else if(lastnameElemet.value == '') {
+        errorBoxLastname.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>"
+        lastnameElemet.focus()
+        errorBoxLastname.style.display = "block"
         return false
     }
     return true
+    
+
 })
+
+
+
