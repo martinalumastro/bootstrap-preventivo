@@ -14,24 +14,36 @@ const callOutputDiscountElement = document.getElementById('call-output-discount'
 
 
 // variabili per messagi di errore
-let nameElement = document.getElementById('name')
-let lastnameElemet = document.getElementById('lastname')
-let emailElement = document.getElementById('email')
+const nameElement = document.getElementById('name')
+const lastnameElemet = document.getElementById('lastname')
+const emailElement = document.getElementById('email')
 
+// variabili box di errore
 let errorBox = document.getElementById('errorName')
 let errorBoxLastname = document.getElementById('errorLastname')
+let errorBoxWork = document.getElementById('errorWork')
+let errorBoxHour = document.getElementById('errorHour')
 
 let alertDiv = '<div class="alert alert-warning alert-dismissible fade show" role="alert">';
 let alertBtn = '<button type="button" onClick="closeDiv()" value="chiudi" class="btn-close"></button>';
 
+
+// funzione button chiusura messaggio di errore
 function closeDiv() {
     if(errorBox.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>") {
     errorBox.style.display = "none"
-    } 
-    if(errorBoxLastname.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>") {
+    }
+    if(errorBoxLastname.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il cognome' + alertBtn + "</div>") {
     errorBoxLastname.style.display = "none"
     }
+    if(errorBoxWork.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il lavoro' + alertBtn + "</div>") {
+        errorBoxWork.style.display = "none"
+        }
+    if(errorBoxHour.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire le ore' + alertBtn + "</div>") {
+        errorBoxHour.style.display = "none"
+        }
 }
+
 
 
 //variabili per i prezzi base del lavoro
@@ -68,14 +80,41 @@ formElement.addEventListener('submit', function (event) {
     //recupero input delle ore di lavoro
     const hour = parseInt(inputHourElement.value) //number
 
-    //prezzi lavori per ore
+    //verifica inserimento name
+    if(nameElement.value == '') {
+        errorBox.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>"
+        nameElement.focus()
+        errorBox.style.display = "block"
+    }
+
+    //verifica inserimento cognome
+    if(lastnameElemet.value == '') {
+        errorBoxLastname.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il cognome' + alertBtn + "</div>"
+        lastnameElemet.focus()
+        errorBoxLastname.style.display = "block"
+    } 
+
+    //prezzi lavori per ore e verifica inserimento lavoro
     if(selectWork === 'backend') {
         priceSomma = priceBackend * hour
     } else if(selectWork === 'frontend') {
         priceSomma = priceFrontend * hour
-    } else {
+    } else if(selectWork === 'analysis') {
         priceSomma = priceAnalysis * hour
+    } else{
+        optionTypeWorkElement.classList.add('text-danger')
+        errorBoxWork.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il lavoro' + alertBtn + "</div>"
+        optionTypeWorkElement.focus()
+        optionTypeWorkElement.style.display = "block"
     }
+
+      //verifica inserimento ore
+      if(isNaN(hour)) {
+        errorBoxHour.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il cognome' + alertBtn + "</div>"
+        inputHourElement.focus()
+        inputHourElement.style.display = "block"
+    } 
+
 
     //somma e due valori decimali
     priceSomma = priceSomma.toFixed(2)
@@ -103,23 +142,8 @@ formElement.addEventListener('submit', function (event) {
         calOutputElement.className = 'text-body'
     }
 
-
-    //verifica name
-    if(nameElement.value == '') {
-        errorBox.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>"
-        nameElement.focus()
-        errorBox.style.display = "block"
-        return false
-    } else if(lastnameElemet.value == '') {
-        errorBoxLastname.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>"
-        lastnameElemet.focus()
-        errorBoxLastname.style.display = "block"
-        return false
-    }
-    return true
-    
-
 })
+
 
 
 
