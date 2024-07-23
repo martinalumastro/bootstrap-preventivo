@@ -115,6 +115,8 @@ formElement.addEventListener('submit', function (event) {
     priceSomma = priceSomma.toFixed(2)
     //console.log(priceSomma)
 
+    priceSommaOfferta = priceSomma - priceSomma * 0.25
+
     //recupero input codice promozionale
     selectPromotion = inputPromotionElement.value //string
     // console.log(selectPromotion)
@@ -132,7 +134,7 @@ formElement.addEventListener('submit', function (event) {
     }
     else {
         callNotifyPromtionElement.innerHTML = ''
-        calOutputElement.innerHTML = priceSomma - priceSomma * 0.25 + ' €'
+        calOutputElement.innerHTML = priceSommaOfferta.toFixed(2) + ' €'
         callOutputDiscountElement.innerHTML = priceSomma + ' €'
         calOutputElement.className = 'text-body'
     }
