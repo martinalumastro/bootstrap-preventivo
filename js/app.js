@@ -24,8 +24,12 @@ let errorBoxLastname = document.getElementById('errorLastname')
 let errorBoxWork = document.getElementById('errorWork')
 let errorBoxHour = document.getElementById('errorHour')
 
+//variabili messaggio di alert e button chiusura alert
 let alertDiv = '<div class="alert alert-warning alert-dismissible fade show" role="alert">';
 let alertBtn = '<button type="button" onClick="closeDiv()" value="chiudi" class="btn-close"></button>';
+
+//stampare in dom riepilogo
+const recapElement = document.getElementById('recap')
 
 
 // funzione button chiusura messaggio di errore
@@ -45,7 +49,6 @@ function closeDiv() {
 }
 
 
-
 //variabili per i prezzi base del lavoro
 let priceBackend = 20.50 //number
 let priceFrontend = 15.30 //number
@@ -56,15 +59,7 @@ let priceSomma = 0
 
 //array offerte
 let promotions = ['YHDNU32','JANJC63','PWKCN25','SJDPO96','POCIE24']
-console.log(promotions)
-
-// for array promozioni
-for(let i = 0; i < promotions.lenght; i++) {
-    //stampare in DOM offerta valida
-    console.log(i)
-    let actualPromotion = promotions[i]
-    console.log(actualPromotion,i)
-}
+// console.log(promotions)
 
 //js form
 formElement.addEventListener('submit', function (event) {
@@ -75,7 +70,7 @@ formElement.addEventListener('submit', function (event) {
 
     //recupero option del lavoro inserito dall'utente
     const selectWork = optionTypeWorkElement.value //string
-    console.log(selectWork)
+    //console.log(selectWork)
 
     //recupero input delle ore di lavoro
     const hour = parseInt(inputHourElement.value) //number
@@ -122,7 +117,7 @@ formElement.addEventListener('submit', function (event) {
 
     //recupero input codice promozionale
     selectPromotion = inputPromotionElement.value //string
-    console.log(selectPromotion)
+    // console.log(selectPromotion)
 
     const promotionFind = promotions.includes(selectPromotion)
 
@@ -142,7 +137,34 @@ formElement.addEventListener('submit', function (event) {
         calOutputElement.className = 'text-body'
     }
 
+    let user = {
+        name: nameElement.value,
+        lastname: lastnameElemet.value,
+        email: emailElement.value,
+        work: selectWork,
+        hour: hour,
+    }
+    //console.log(purchase)
+    
+    recapElement.innerHTML = 
+        '<h3>Riepilogo</h3>' + 
+        '<div>' +
+            '<h4 class="pt-4">Dati utente</h4>' + 
+        '</div>' +
+        '<div class="mt-2">' + 
+            '<p>' + 'Nome: ' + user.name + '</p>' +
+            '<p>' + 'Cognome: ' + user.lastname + '</p>' +
+            '<p>' + 'Email: ' + user.email + '</p>' +
+        '</div>' +  
+        '<div>' +
+            '<h4 class="pt-4">Dati richiesta</h4>' + 
+        '</div>' + 
+        '<div class="mt-2">' +
+            '<p>' + 'Lavoro richiesto: ' + user.work + '</p>' +
+            '<p>' + 'Ore richieste: ' + user.hour + '</p>' +
+        '</div>'
 })
+
 
 
 
