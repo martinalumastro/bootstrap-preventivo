@@ -63,17 +63,22 @@
             <!--Form-->
             <form id="form-work" class="pt-2" method="post">
               <div class="mb-3">
+                <!--Campo nome-->
                 <label class="form-label" for="name">Nome</label>
                 <input
                   id="name"
+                  name="name"
                   type="text"
                   class="form-control"
                   placeholder="Nome"
                   value=""
                 />
-                <div class="close-btn" id="errorName"></div>
+                <!--Div validazione: valid/invalid-->
+                <div class="valid-feedback">Il campo è valido.</div>
+                <div class="invalid-feedback">Il campo non è valido!</div>
               </div>
               <div class="mb-3">
+                <!--Campo cognome-->
                 <label class="form-label" for="lastname">Cognome</label>
                 <input
                   id="lastname"
@@ -83,9 +88,12 @@
                   placeholder="Cognome"
                   value=""
                 />
-                <div class="close-btn" id="errorLastname"></div>
+                <!--Div validazione: valid/invalid-->
+                <div class="valid-feedback">Il campo è valido.</div>
+                <div class="invalid-feedback">Il campo non è valido!</div>
               </div>
               <div class="mb-3">
+                <!--Campo email-->
                 <label for="email" class="form-label">Email</label>
                 <input
                   type="email"
@@ -95,8 +103,10 @@
                   placeholder="nomecognome@mail.com"
                   value=""
                 />
+                <!--Div validazione: valid/invalid !!!!!!!!!!!-->
               </div>
               <div>
+                <!--Campo lavoro-->
                 <select
                   for="work"
                   id="work"
@@ -110,9 +120,12 @@
                   <option value="frontend">Frontend Development</option>
                   <option value="analysis">Project Analysis</option>
                 </select>
-                <div class="close-btn" id="errorWork"></div>
+                <!--Div validazione: valid/invalid-->
+                <div class="valid-feedback">Il campo è valido.</div>
+                <div class="invalid-feedback">Il campo non è valido!</div>
               </div>
               <div class="mb-3">
+                <!--Campo ore-->
                 <label for="hour" class="form-label"
                   >Numero ore di lavoro</label
                 >
@@ -124,9 +137,12 @@
                   class="form-control"
                   placeholder="Numero ore"
                 />
-                <div class="close-btn" id="errorHour"></div>
+                <!--Div validazione: valid/invalid-->
+                <div class="valid-feedback">Il campo è valido.</div>
+                <div class="invalid-feedback">Il campo non è valido!</div>
               </div>
               <div class="mb-3">
+                <!--Campo area testo/note-->
                 <label class="form-label">Textarea con Bootstap 5</label>
                 <textarea
                   class="form-control"
@@ -135,6 +151,7 @@
                 ></textarea>
               </div>
               <div class="mb-3">
+                <!--Codice promozionale-->
                 <label class="form-label" for="user-promotion"
                   >Codice Promozionale (opzionale)</label
                 >
@@ -144,21 +161,24 @@
                   id="user-promotion"
                   placeholder="ABCDE12"
                 />
+                <!--Messaggio di errrore per il codice promozionale-->
                 <p id="call-notify-promotion" class="text-danger"></p>
               </div>
               <div class="form-check" for="checkPolicy">
+                <!--Privacy policy-->
                 <input
                   class="form-check-input"
                   type="checkbox"
                   value=""
                   id="checkPolicy"
                 />
-                <label class="form-check-label">
+                <label class="form-check-label" id="privacy-policy-check">
                   Accetto la Privacy Policy
                 </label>
                 <p id="privacy-policy"></p>
               </div>
               <div class="d-flex justify-content-around pt-4">
+                <!--Pulsante form-->
                 <button
                   id="calculate"
                   type="submit"
@@ -167,6 +187,7 @@
                   Calcola preventivo
                 </button>
                 <div>
+                  <!--Prezzo stampato-->
                   <h4>Prezzo finale</h4>
                   <div class="d-inline-flex gap-3">
                     <h4 id="call-output">---.-- €</h4>
@@ -180,6 +201,7 @@
             </form>
           </div>
           <div class="col-12 col-xl-4">
+            <!--colonna destra - Informazioni utili-->
             <div class="card" style="width: 18rem">
               <img
                 src="..."
@@ -208,7 +230,7 @@
         </div>
       </div>
     </section>
-
+    <!--Footer-->
     <footer class="row bg-dark mt-4" data-bs-theme="dark">
       <div class="col">
         <p class="text-light text-center mt-3">

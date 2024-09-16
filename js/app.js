@@ -1,53 +1,24 @@
 
-//Variabili per DOM
+//Variabili
 const formElement = document.getElementById('form-work')
 
+//variabili per lavoro, ore, codice promaionale
 const optionTypeWorkElement = document.getElementById('work')
 const inputHourElement = document.getElementById('hour')
-
 const inputPromotionElement = document.getElementById('user-promotion')
 
+// variabili per DOM stampa prezzi/sconti
 const calOutputElement = document.getElementById('call-output')
 const callNotifyPromtionElement = document.getElementById('call-notify-promotion')
 const callOutputDiscountElement = document.getElementById('call-output-discount')
 
-
-
-// variabili per messagi di errore
+// variabili per nome/cognome/email
 const nameElement = document.getElementById('name')
 const lastnameElemet = document.getElementById('lastname')
 const emailElement = document.getElementById('email')
 
-// variabili box di errore
-let errorBox = document.getElementById('errorName')
-let errorBoxLastname = document.getElementById('errorLastname')
-let errorBoxWork = document.getElementById('errorWork')
-let errorBoxHour = document.getElementById('errorHour')
-
-//variabili messaggio di alert e button chiusura alert
-let alertDiv = '<div class="alert alert-warning alert-dismissible fade show" role="alert">';
-let alertBtn = '<button type="button" onClick="closeDiv()" value="chiudi" class="btn-close"></button>';
-
 //stampare in dom riepilogo
 const recapElement = document.getElementById('recap')
-
-
-// funzione button chiusura messaggio di errore
-function closeDiv() {
-    if(errorBox.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>") {
-    errorBox.style.display = "none"
-    }
-    if(errorBoxLastname.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il cognome' + alertBtn + "</div>") {
-    errorBoxLastname.style.display = "none"
-    }
-    if(errorBoxWork.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il lavoro' + alertBtn + "</div>") {
-        errorBoxWork.style.display = "none"
-        }
-    if(errorBoxHour.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire le ore' + alertBtn + "</div>") {
-        errorBoxHour.style.display = "none"
-        }
-}
-
 
 //variabili per i prezzi base del lavoro
 let priceBackend = 20.50 //number
@@ -59,7 +30,6 @@ let priceSomma = 0
 
 //array offerte
 let promotions = ['YHDNU32','JANJC63','PWKCN25','SJDPO96','POCIE24']
-// console.log(promotions)
 
 //js form
 formElement.addEventListener('submit', function (event) {
@@ -70,58 +40,68 @@ formElement.addEventListener('submit', function (event) {
 
     //recupero option del lavoro inserito dall'utente
     const selectWork = optionTypeWorkElement.value //string
-    //console.log(selectWork)
 
     //recupero input delle ore di lavoro
     const hour = parseInt(inputHourElement.value) //number
 
+
     //verifica inserimento name
-    if(nameElement.value == '') {
-        errorBox.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il nome' + alertBtn + "</div>"
-        nameElement.focus()
-        errorBox.style.display = "block"
+    nameElement.classList.remove('is-valid', 'is-invalid')
+    if(nameElement.value === '') {
+        nameElement.classList.add('is-invalid')
+    } else {
+        nameElement.classList.add('is-valid')
     }
+
 
     //verifica inserimento cognome
-    if(lastnameElemet.value == '') {
-        errorBoxLastname.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il cognome' + alertBtn + "</div>"
-        lastnameElemet.focus()
-        errorBoxLastname.style.display = "block"
-    } 
+    lastnameElemet.classList.remove('is-valid', 'is-invalid')
 
-    //prezzi lavori per ore e verifica inserimento lavoro
-    if(selectWork === 'backend') {
-        priceSomma = priceBackend * hour
-    } else if(selectWork === 'frontend') {
-        priceSomma = priceFrontend * hour
-    } else if(selectWork === 'analysis') {
-        priceSomma = priceAnalysis * hour
-    } else{
-        optionTypeWorkElement.classList.add('text-danger')
-        errorBoxWork.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il lavoro' + alertBtn + "</div>"
-        optionTypeWorkElement.focus()
-        optionTypeWorkElement.style.display = "block"
+    if(lastnameElemet.value === '') {
+        lastnameElemet.classList.add('is-invalid')
+    } else {
+        lastnameElemet.classList.add('is-valid')
     }
 
-      //verifica inserimento ore
+
+    //prezzi lavori per ore e verifica inserimento lavoro
+    optionTypeWorkElement.classList.remove('is-valid', 'is-invalid')
+
+    if(selectWork === 'backend') {
+        priceSomma = priceBackend * hour
+        optionTypeWorkElement.classList.add('is-valid')
+    } else if(selectWork === 'frontend') {
+        priceSomma = priceFrontend * hour
+        optionTypeWorkElement.classList.add('is-valid')
+    } else if(selectWork === 'analysis') {
+        priceSomma = priceAnalysis * hour
+        optionTypeWorkElement.classList.add('is-valid')
+    } else{
+        optionTypeWorkElement.classList.add('is-invalid')
+        optionTypeWorkElement.focus()
+    }
+
+
+    //verifica inserimento ore
+    inputHourElement.classList.remove('is-valid', 'is-invalid')
       if(isNaN(hour)) {
-        errorBoxHour.innerHTML = alertDiv + '<strong>Attento!</strong> Hai dimenticato di inserire il cognome' + alertBtn + "</div>"
-        inputHourElement.focus()
-        inputHourElement.style.display = "block"
-    } 
+          inputHourElement.classList.add('is-invalid')
+          inputHourElement.focus()
+      } else {
+          inputHourElement.classList.add('is-valid')
+      }
 
 
     //somma e due valori decimali
     priceSomma = priceSomma.toFixed(2)
-    //console.log(priceSomma)
 
     priceSommaOfferta = priceSomma - priceSomma * 0.25
 
     //recupero input codice promozionale
     selectPromotion = inputPromotionElement.value //string
-    // console.log(selectPromotion)
-
+   
     const promotionFind = promotions.includes(selectPromotion)
+
 
     //Stampare prezzo in DOM con o senza offerta
     if((isNaN(hour)) || (selectWork === null)) {
@@ -146,8 +126,9 @@ formElement.addEventListener('submit', function (event) {
         work: selectWork,
         hour: hour,
     }
-    //console.log(purchase)
     
+
+    //PROVA STAMPA IN DOM RIEPILOGO VALORI
     recapElement.innerHTML = 
         '<h3>Riepilogo</h3>' + 
         '<div>' +
@@ -166,7 +147,6 @@ formElement.addEventListener('submit', function (event) {
             '<p>' + 'Ore richieste: ' + user.hour + '</p>' +
         '</div>'
 })
-
 
 
 
