@@ -93,10 +93,10 @@
                 <div class="invalid-feedback">Il campo non è valido!</div>
               </div>
               <div class="mb-3">
-                <!--Campo email-->
+                <!--Campo email (id text ==> prova validità campo email in js)-->
                 <label for="email" class="form-label">Email</label>
                 <input
-                  type="email"
+                  type="text"
                   id="email"
                   name="email"
                   class="form-control"
@@ -104,6 +104,8 @@
                   value=""
                 />
                 <!--Div validazione: valid/invalid !!!!!!!!!!!-->
+                <div class="valid-feedback">Il campo è valido.</div>
+                <div class="invalid-feedback">Il campo non è valido!</div>
               </div>
               <div>
                 <!--Campo lavoro-->
@@ -225,6 +227,7 @@
                 </ul>
               </div>
             </div>
+            <!--Stampa riepilogo-->
             <div class="pt-4" id="recap"></div>
           </div>
         </div>

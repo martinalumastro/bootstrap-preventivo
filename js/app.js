@@ -31,12 +31,12 @@ let priceSomma = 0
 //array offerte
 let promotions = ['YHDNU32','JANJC63','PWKCN25','SJDPO96','POCIE24']
 
+
 //js form
 formElement.addEventListener('submit', function (event) {
 
     //impedire invio form
     event.preventDefault()
-    console.log('submit')
 
     //recupero option del lavoro inserito dall'utente
     const selectWork = optionTypeWorkElement.value //string
@@ -63,6 +63,18 @@ formElement.addEventListener('submit', function (event) {
         lastnameElemet.classList.add('is-valid')
     }
 
+
+    //VERIFICA EMAIL
+    emailElement.classList.remove('is-valid', 'is-invalid')
+
+    if(emailElement.value.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)){
+        emailElement.classList.add('is-valid')
+    } else {
+        emailElement.classList.add('is-invalid')
+    }
+
+    // recupero il valore della email indicata nel form
+    
 
     //prezzi lavori per ore e verifica inserimento lavoro
     optionTypeWorkElement.classList.remove('is-valid', 'is-invalid')
